@@ -16,13 +16,24 @@ let router=new Router({
     {
       path: '/',
       name: 'index',
-      component: Index
+      component: Index,children:[
+        {
+          path: '/create-task',
+          name: 'create-task',
+          component: CreateTask
+        }
+        ,{
+          path: '/receive-task',
+          name: 'create-task',
+          component: ReceivedTask
+        }
+        ,{
+          path: '/persion-center',
+          name: 'create-task',
+          component: Personal
+        }
+      ]
     },
-    {
-      path: '/index',
-      name: 'index',
-      component: Index
-    },,
     {
       path: '/login',
       name: 'Login',
@@ -36,20 +47,6 @@ let router=new Router({
       path: '/find-password',
       name: 'find-password',
       component: FindPassword
-    },{
-      path: '/create-task',
-      name: 'create-task',
-      component: CreateTask
-    }
-    ,{
-      path: '/receive-task',
-      name: 'create-task',
-      component: ReceivedTask
-    }
-    ,{
-      path: '/persion-center',
-      name: 'create-task',
-      component: Personal
     }
   ]
 })
@@ -59,18 +56,14 @@ router.beforeEach((to, from, next) => {
   // console.log('to:' + to.path)
   if (to.path.startsWith('/login')||to.path.startsWith('/register')||to.path.startsWith('/find-password')) {
     next()
-    console.log("4")
   } else if (to.path.startsWith('/index')) {
-    console.log("3")
     next()
   } else {
     //let user = JSON.parse(window.localStorage.getItem('access-token'))
     let user = window.localStorage.getItem('access-token');
     if (!user) {
-      console.log("1")
       next({path: '/login'})
     } else {
-      console.log("2")
       next()
     }
   }

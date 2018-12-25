@@ -15,12 +15,3 @@ new Vue({
   },
   template: '<App/>'
 })
-
-Vue.prototype.islogin = function () {
-  let user = window.localStorage.getItem('access-token');
-  if (!user) {
-    return false
-  } else {
-    return true
-  }
-}

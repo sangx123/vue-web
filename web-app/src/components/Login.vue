@@ -4,13 +4,13 @@
       <H6 align="center">密码登陆</H6>
     </div>
     <div class="row">
-      <b-input name="username" type="text" placeholder="请输入用户名" v-model="username"></b-input>
+      <input name="username" type="text" placeholder="请输入用户名" v-model="username"></input>
     </div>
     <div class="row">
-      <b-input name="password" type="password" placeholder="请输入密码" v-model="password"></b-input>
+      <input name="password" type="password" placeholder="请输入密码" v-model="password"></input>
     </div>
     <div class="row">
-      <b-button @click="onClick" class="btn btn-block" >登陆</b-button>
+      <button @click="onClick" class="btn btn-block" >登陆</button>
     </div>
     <div class="row" >
       <label> 还没有注册</label>
