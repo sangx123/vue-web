@@ -1,21 +1,9 @@
 <template>
   <header>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <ul class="navbar-nav navbar-center" style="margin: auto">
-          <li><router-link to="/index" class="nav-link" style="margin-left: 20px">任务大厅</router-link> </li>
-          <li><router-link to="/persion-center" class="nav-link" style="margin-left: 20px">个人中心</router-link> </li>
-        </ul>
-
-      <ul class="navbar-nav ml-auto" style="margin-right: 20px">
-        <li><button @click="onClick">注销</button> </li>
-      </ul>
-
-      <!--<ul class="navbar-nav ml-auto" style="margin-right: 20px" v-else>-->
-        <!--<li><router-link to="/login"  class="nav-link" style="margin-right: 20px">登陆</router-link> </li>-->
-        <!--<li><router-link to="/register" class="nav-link" style="margin-right: 20px">注册</router-link> </li>-->
-      <!--</ul>-->
-
-    </nav>
+    <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal" @select="handleSelect">
+      <el-menu-item index="1"><router-link to="/index" class="nav-link" style="margin-left: 20px">任务大厅</router-link></el-menu-item>
+      <el-menu-item index="2"><router-link to="/persion-center" class="nav-link" style="margin-left: 20px">个人中心</router-link></el-menu-item>
+    </el-menu>
   </header>
 </template>
 <script>

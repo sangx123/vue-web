@@ -1,16 +1,16 @@
 <template>
   <div class="login">
     <div class="row">
-      <H6 align="center">密码登陆</H6>
+      <h3 class="title">密码登陆</h3>
     </div>
     <div class="row">
-      <input name="username" type="text" placeholder="请输入用户名" v-model="username"></input>
+      <el-input clearable name="username" type="text" placeholder="请输入用户名" v-model="username"></el-input>
     </div>
     <div class="row">
-      <input name="password" type="password" placeholder="请输入密码" v-model="password"></input>
+      <el-input  clearable name="password" type="password" placeholder="请输入密码" v-model="password"></el-input>
     </div>
     <div class="row">
-      <button @click="onClick" class="btn btn-block" >登陆</button>
+      <el-button @click="onClick" type="primary" style="width:100%;">登陆</el-button>
     </div>
     <div class="row" >
       <label> 还没有注册</label>
@@ -65,5 +65,10 @@
   .row{
     padding-top: 20px;
     margin: auto;
+  }
+  .title {
+    margin: 0px auto 40px auto;
+    text-align: center;
+    color: #505458;
   }
 </style>
