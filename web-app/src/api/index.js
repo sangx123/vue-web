@@ -1,8 +1,10 @@
 /**
  * Created by bootdo.
+ * 参考文章：https://blog.csdn.net/yin_you_yu/article/details/80402650
  */
 import axios from 'axios'
 import store from "../vuex/store";
+import router from '../router'
 import {
   bus
 } from '../bus.js'
@@ -14,29 +16,41 @@ axios.defaults.withCredentials = true;
 
 //添加一个请求拦截器
 axios.interceptors.request.use(
+
+  //在请求发出之前进行一些操作
   config => {
     if (window.localStorage.getItem('access-token')) {
       config.headers.Authorization = window.localStorage.getItem('access-token');
+      //config.headers["token"] = window.localStorage.getItem('access-token');
     }
     store.state.loading = true
     return config
   },
   error => {
+    //Do something with request error
     return Promise.reject(error)
   }
 );
 // 添加一个响应拦截器
 axios.interceptors.response.use(function (response) {
+  console.log(222+response)
   store.state.loading = false
   if (response.data && response.data.code) {
-    if (parseInt(response.data.code) === 401) {
+    if (parseInt(response.data.code) == 401) {
       //未登录
-      bus.$emit('goto', '/login')
+      console.log("发送事件")
+      router.replace({
+        path: 'login',
+        query: {redirect: router.currentRoute.fullPath}
+      })
+      //bus.$emit('goto', '/login')
     }
   }
 
   return response;
 }, function (error) {
+  console.log(111+error)
+  //Do something with response error
   store.state.loading = false
   // Do something with response error
   return Promise.reject(error);

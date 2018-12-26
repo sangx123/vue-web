@@ -1,14 +1,36 @@
 <template>
   <header>
-    <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal" @select="handleSelect">
-      <el-menu-item index="1"><router-link to="/index" class="nav-link" style="margin-left: 20px">任务大厅</router-link></el-menu-item>
-      <el-menu-item index="2"><router-link to="/persion-center" class="nav-link" style="margin-left: 20px">个人中心</router-link></el-menu-item>
+    <el-menu :default-active="activeIndex" router="true" class="el-menu-demo" mode="horizontal"   background-color="#545c64"
+             text-color="#fff"
+             active-text-color="#ffd04b">
+      <el-menu-item index="/">任务大厅</el-menu-item>
+      <el-menu-item index="/persion-center">个人中心</el-menu-item>
     </el-menu>
   </header>
 </template>
 <script>
   export default {
+    data() {
+      return {
+        activeIndex: '1',
+      };
+    },
+    updated() {//路径及按键操作时调用
+      this.updateForcus();
+    },
+
+    mounted() {//载入时调用，F5刷新会起效
+      this.updateForcus();
+    },
     methods: {
+      updateForcus() {
+        var path = this.$route.path;
+        if (path=="/" || path=="/index") {
+          this.activeIndex = "/";
+        } else if (path == "/persion-center") {
+          this.activeIndex = "/persion-center";
+        }
+      },
       onClick: function (ev) {
         let that = this;
         this.$confirm("确认退出吗?", "提示", {

@@ -10,7 +10,7 @@ export default {
     return API.POST('/login', params)
   },
   register: params => {
-    return API.POST('/register', params)
+    return API.POST('/createTask', params)
   }
   // //登出
   // logout: params => {

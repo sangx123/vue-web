@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import HelloWorld from '@/components/HelloWorld'
 import Login from '@/components/Login'
 import Register from '@/components/Register'
 import FindPassword from '@/components/FindPassword'
@@ -8,8 +7,10 @@ import Index from "@/components/Index"
 import CreateTask from  "@/components/CreateTask"
 import ReceivedTask from  "@/components/ReceivedTask"
 import Personal from  "@/components/Personal"
+import Home from "@/components/Home";
+import MyTask from "@/components/MyTask";
 Vue.use(Router)
-
+//参考文章：https://www.cnblogs.com/goloving/p/9147975.html
 let router=new Router({
   mode: 'history',
   routes: [
@@ -18,21 +19,22 @@ let router=new Router({
       name: 'index',
       component: Index,children:[
         {
-          path: '/create-task',
-          name: 'create-task',
-          component: CreateTask
+          path: '/home',
+          name: 'home',
+          component: Home
         }
+
         ,{
           path: '/receive-task',
-          name: 'create-task',
+          name: 'receive-task',
           component: ReceivedTask
         }
         ,{
           path: '/persion-center',
-          name: 'create-task',
+          name: 'persion-center',
           component: Personal
         }
-      ]
+      ],redirect:'/home'
     },
     {
       path: '/login',
@@ -48,6 +50,18 @@ let router=new Router({
       name: 'find-password',
       component: FindPassword
     }
+    ,
+    {
+      path: '/create-task',
+      name: 'create-task',
+      component: CreateTask
+    }
+    ,
+    {
+      path: '/my-task',
+      name: 'my-task',
+      component: MyTask
+    }
   ]
 })
 
@@ -62,9 +76,25 @@ router.beforeEach((to, from, next) => {
     //let user = JSON.parse(window.localStorage.getItem('access-token'))
     let user = window.localStorage.getItem('access-token');
     if (!user) {
-      next({path: '/login'})
+      if(to.path==="/login"){
+        next()
+      }else{
+        next({
+          path:"/login",
+          query: {redirect: to.fullPath}//将目的路由地址存入login的query中
+        })
+      }
     } else {
-      next()
+      if(Object.keys(from.query).length === 0){//判断路由来源是否有query，处理不是目的跳转的情况
+        next()
+      }else{
+        let redirect = from.query.redirect//如果来源路由有query
+        if(to.path === redirect){//这行是解决next无限循环的问题
+          next()
+        }else{
+          next({path:redirect})//跳转到目的路由
+        }
+      }
     }
   }
 })

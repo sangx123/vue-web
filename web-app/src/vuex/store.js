@@ -4,6 +4,7 @@ Vue.use(Vuex)
 
 const state = {
   loading: false,
+  indexMenu:1
 }
 
 export default new Vuex.Store({
