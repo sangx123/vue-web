@@ -1,6 +1,6 @@
 <template>
   <header>
-    <el-menu :default-active="activeIndex" router="true" class="el-menu-demo" mode="horizontal"   background-color="#545c64"
+    <el-menu :default-active="activeIndex" v-bind:router="true" class="el-menu-demo" mode="horizontal"   background-color="#545c64"
              text-color="#fff"
              active-text-color="#ffd04b">
       <el-menu-item index="/">任务大厅</el-menu-item>

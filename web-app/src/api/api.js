@@ -11,7 +11,11 @@ export default {
   },
   register: params => {
     return API.POST('/createTask', params)
+  },
+  getHomeTask: params => {
+    return API.POST('/getHomeTask', params)
   }
+
   // //登出
   // logout: params => {
   //   return API.GET('/api-admin/logout', params)

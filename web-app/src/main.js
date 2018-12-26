@@ -7,7 +7,7 @@ import router from './router'
 import store from './vuex/store.js'
 
 import {
-  // Pagination,
+   Pagination,
   // Dialog,
   // Autocomplete,
   // Dropdown,
@@ -31,8 +31,8 @@ import {
    OptionGroup,
    Button,
    ButtonGroup,
-  // Table,
-  // TableColumn,
+   Table,
+   TableColumn,
    DatePicker,
    TimeSelect,
    TimePicker,
@@ -76,7 +76,7 @@ import {
   // Notification
 } from 'element-ui';
 
-// Vue.use(Pagination);
+ Vue.use(Pagination);
 // Vue.use(Dialog);
 // Vue.use(Autocomplete);
 // Vue.use(Dropdown);
@@ -100,8 +100,8 @@ import {
  Vue.use(OptionGroup);
  Vue.use(Button);
  Vue.use(ButtonGroup);
-// Vue.use(Table);
-// Vue.use(TableColumn);
+ Vue.use(Table);
+ Vue.use(TableColumn);
  Vue.use(DatePicker);
  Vue.use(TimeSelect);
  Vue.use(TimePicker);
