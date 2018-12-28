@@ -14,7 +14,14 @@ export default {
   },
   getHomeTask: params => {
     return API.POST('/getHomeTask', params)
-  }
+  },
+  applyTask: params => {
+    return API.POST('/applyTask', params)
+  },
+
+  getUserTask: params => {
+  return API.POST('/getUserTask', params)
+  },
 
   // //登出
   // logout: params => {

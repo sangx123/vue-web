@@ -10,20 +10,11 @@
         width="180">
       </el-table-column>
       <el-table-column
-        prop="workerNum"
-        label="任务人数"
-        width="180">
-      </el-table-column>
-      <el-table-column
-        prop="workerPrice"
-        label="佣金价格">
-      </el-table-column>
-      <el-table-column
         label="操作"
         width="100">
         <template slot-scope="scope">
-          <el-button v-if="scope.row.state == '1'" @click="handleClick(scope.row)"   :disabled="true" type="primary" size="small">申请成功</el-button>
-          <el-button v-else @click="handleClick(scope.row)"   :disabled="false" type="primary" size="small">申请</el-button>
+          <el-button v-if="scope.row.state == '1'" @click="handleClick(scope.row)"   :disabled="true" type="primary" size="small">审核中</el-button>
+          <el-button v-else @click="handleClick(scope.row)"   :disabled="false" type="primary" size="small">提交任务</el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -85,7 +76,7 @@
           pageNumber: that.pageNumber,
           state:0
         };
-        API.getHomeTask(params).then(function(result) {
+        API.getUserTask(params).then(function(result) {
             console.log(result.result.list)
             that.totalDataNumber=result.result.total
             that.tableData=result.result.list
@@ -108,7 +99,7 @@
     },
     mounted() {
       this.getTaskData()
-   }
+    }
   }
 </script>
 <style>

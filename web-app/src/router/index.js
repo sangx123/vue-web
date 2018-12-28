@@ -9,6 +9,9 @@ import ReceivedTask from  "@/components/ReceivedTask"
 import Personal from  "@/components/Personal"
 import Home from "@/components/Home";
 import MyTask from "@/components/MyTask";
+import Recharge from "@/components/Recharge";
+import TaskFinished from "@/components/TaskFinished";
+import TaskNotFinished from "../components/TaskNotFinished";
 Vue.use(Router)
 //参考文章：https://www.cnblogs.com/goloving/p/9147975.html
 let router=new Router({
@@ -32,7 +35,33 @@ let router=new Router({
         ,{
           path: '/persion-center',
           name: 'persion-center',
-          component: Personal
+          component: Personal,children: [
+            {
+              path: '/taskFinished',
+              name: 'taskFinished',
+              component: TaskFinished
+            },
+            {
+              path: '/taskNotFinished',
+              name: 'taskNotFinished',
+              component: TaskNotFinished
+            },
+            {
+              path: '/create-task',
+              name: 'create-task',
+              component: CreateTask
+            }
+            ,
+            {
+              path: '/my-task',
+              name: 'my-task',
+              component: MyTask
+            }
+          ],redirect:'/taskFinished'
+        },{
+          path: '/Recharge',
+          name: 'recharge',
+          component: Recharge
         }
       ],redirect:'/home'
     },
@@ -50,18 +79,7 @@ let router=new Router({
       name: 'find-password',
       component: FindPassword
     }
-    ,
-    {
-      path: '/create-task',
-      name: 'create-task',
-      component: CreateTask
-    }
-    ,
-    {
-      path: '/my-task',
-      name: 'my-task',
-      component: MyTask
-    }
+
   ]
 })
 
