@@ -1,8 +1,7 @@
 <template>
 <div class="hello">
   <h1>{{ msg }}</h1>
-  <kendo-calendar :value="new Date()"></kendo-calendar>
-  <kendo-button class="k-primary">Button</kendo-button>
+  <router-link tag="a" :to="{path:'/how-to-use-alipay'}">充值教程</router-link>
 </div>
 </template>
 

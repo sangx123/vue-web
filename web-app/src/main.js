@@ -54,7 +54,7 @@ import {
   // Upload,
   // Progress,
   // Badge,
-  // Card,
+   Card,
   // Rate,
   // Steps,
   // Step,
@@ -65,12 +65,12 @@ import {
   // Cascader,
   // ColorPicker,
   // Transfer,
-  // Container,
-  // Header,
-  // Aside,
-  // Main,
-  // Footer,
-  // Loading,
+  Container,
+  Header,
+  Aside,
+  Main,
+  Footer,
+  Loading,
   // MessageBox,
   // Message,
   // Notification
@@ -123,7 +123,7 @@ import {
 // Vue.use(Upload);
 // Vue.use(Progress);
 // Vue.use(Badge);
-// Vue.use(Card);
+ Vue.use(Card);
 // Vue.use(Rate);
 // Vue.use(Steps);
 // Vue.use(Step);
@@ -134,11 +134,11 @@ import {
 // Vue.use(Cascader);
 // Vue.use(ColorPicker);
 // Vue.use(Transfer);
-// Vue.use(Container);
-// Vue.use(Header);
-// Vue.use(Aside);
-// Vue.use(Main);
-// Vue.use(Footer);
+ Vue.use(Container);
+ Vue.use(Header);
+ Vue.use(Aside);
+Vue.use(Main);
+Vue.use(Footer);
 
 Vue.config.productionTip = false
 /* eslint-disable no-new */

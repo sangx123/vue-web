@@ -10,7 +10,7 @@ export default {
     return API.POST('/login', params)
   },
   register: params => {
-    return API.POST('/createTask', params)
+    return API.POST('/register', params)
   },
   getHomeTask: params => {
     return API.POST('/getHomeTask', params)
@@ -22,6 +22,24 @@ export default {
   getUserTask: params => {
   return API.POST('/getUserTask', params)
   },
+  checkAlipay: params => {
+    return API.POST('/checkAlipay', params)
+  },
+  applyTixian: params => {
+    return API.POST('/applyTixian', params)
+  },
+  logout: params => {
+    return API.GET('/logout', params)
+  },
+  moneyHistory: params => {
+    return API.POST('/moneyHistory', params)
+  },
+  getUserOverView: params => {
+    return API.GET('/getUserOverView', params)
+  }
+
+
+
 
   // //登出
   // logout: params => {

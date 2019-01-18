@@ -12,8 +12,8 @@
     <div class="row">
       <el-button @click="onClick" type="primary" style="width:100%;">登陆</el-button>
     </div>
-    <div class="row" >
-      <label> 还没有注册</label>
+    <div class="row">
+      <el-button @click="registeClick" type="primary" style="width:100%;">注册</el-button>
     </div>
   </div>
 </template>
@@ -52,6 +52,10 @@
           .catch(function(error) {
               console.log("请求出现异常")
           });
+      }
+      ,
+      registeClick:function () {
+        this.$router.push({ path: "/register" });
       }
     }
   }

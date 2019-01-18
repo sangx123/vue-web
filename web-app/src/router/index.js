@@ -11,7 +11,17 @@ import Home from "@/components/Home";
 import MyTask from "@/components/MyTask";
 import Recharge from "@/components/Recharge";
 import TaskFinished from "@/components/TaskFinished";
-import TaskNotFinished from "../components/TaskNotFinished";
+import TaskNotFinished from "@/components/TaskNotFinished";
+import HowToUseAlipay from "@/components/HowToUseAlipay";
+import ChargeMoney from "@/components/ChargeMoney";
+import UserOverView from "../components/UserOverView";
+import UserTixian from "../components/UserTixian";
+import MoneyHistory from "../components/MoneyHistory";
+import TaoBaoTaskHall from "../components/TaoBaoTaskHall";
+import TaoBaoTaskHallIndex from "../components/TaoBaoTaskHallIndex";
+import CreateTaobaoTask from "../components/CreateTaobaoTask";
+import MyCreatedTaobaoTask from "../components/MyCreatedTaobaoTask";
+import MyTaobaoTask from "../components/MyTaobaoTask";
 Vue.use(Router)
 //参考文章：https://www.cnblogs.com/goloving/p/9147975.html
 let router=new Router({
@@ -21,26 +31,41 @@ let router=new Router({
       path: '/',
       name: 'index',
       component: Index,children:[
+        //淘宝大厅
         {
           path: '/home',
           name: 'home',
-          component: Home
-        }
-
-        ,{
-          path: '/receive-task',
-          name: 'receive-task',
-          component: ReceivedTask
-        }
-        ,{
-          path: '/persion-center',
-          name: 'persion-center',
-          component: Personal,children: [
-            {
-              path: '/taskFinished',
-              name: 'taskFinished',
-              component: TaskFinished
-            },
+          component: Home,
+          children:[
+          {
+            path: '/TaobaoTaskHall',
+            name: 'TaobaoTaskHall',
+            component: TaoBaoTaskHall,
+            children:[ {
+              path: '/TaoBaoTaskHallIndex',
+              name: 'TaoBaoTaskHallIndex',
+              component: TaoBaoTaskHallIndex
+            },{
+              path: '/CreateTaobaoTask',
+              name: 'CreateTaobaoTask',
+              component: CreateTaobaoTask
+            },{
+              path: '/MyCreatedTaobaoTask',
+              name: 'MyCreatedTaobaoTask',
+              component: MyCreatedTaobaoTask
+            },{
+              path: '/MyTaobaoTask',
+              name: 'MyTaobaoTask',
+              component: MyTaobaoTask
+            }
+            ],redirect:"/TaoBaoTaskHallIndex"
+          }
+           ,
+          {
+            path: '/taskFinished',
+            name: 'taskFinished',
+            component: TaskFinished
+          },
             {
               path: '/taskNotFinished',
               name: 'taskNotFinished',
@@ -50,15 +75,46 @@ let router=new Router({
               path: '/create-task',
               name: 'create-task',
               component: CreateTask
+            }],
+          redirect:"/TaoBaoTaskHall"
+        }
+        ,
+        {
+          path: '/receive-task',
+          name: 'receive-task',
+          component: ReceivedTask
+        }
+        ,
+        //个人中心
+        {
+          path: '/persion-center',
+          name: 'persion-center',
+          component: Personal,children: [
+            {
+              path: '/userOverView',
+              name: 'userOverView',
+              component: UserOverView
+            },
+            {
+              path: '/userTixian',
+              name: 'userTixian',
+              component: UserTixian
             }
             ,
             {
-              path: '/my-task',
-              name: 'my-task',
-              component: MyTask
+              path: '/charge-money',
+              name: 'charge-money',
+              component: ChargeMoney
+            } ,
+            {
+              path: '/MoneyHistory',
+              name: 'MoneyHistory',
+              component: MoneyHistory
             }
-          ],redirect:'/taskFinished'
-        },{
+          ],redirect:'/userOverView'
+        },
+
+        {
           path: '/Recharge',
           name: 'recharge',
           component: Recharge
@@ -78,6 +134,10 @@ let router=new Router({
       path: '/find-password',
       name: 'find-password',
       component: FindPassword
+    }, {
+      path: '/how-to-use-alipay',
+      name: 'how-to-use-alipay',
+      component: HowToUseAlipay
     }
 
   ]

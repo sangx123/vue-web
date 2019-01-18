@@ -1,43 +1,62 @@
 <template>
-  <div id="app">
-    <el-table
-      :data="tableData"
-      stripe
-      style="width: 100%">
-      <el-table-column
-        prop="title"
-        label="任务名称"
-        width="180">
-      </el-table-column>
-      <el-table-column
-        prop="workerNum"
-        label="任务人数"
-        width="180">
-      </el-table-column>
-      <el-table-column
-        prop="workerPrice"
-        label="佣金价格">
-      </el-table-column>
-      <el-table-column
-        label="操作"
-        width="100">
-        <template slot-scope="scope">
-          <el-button v-if="scope.row.state == '1'" @click="handleClick(scope.row)"   :disabled="true" type="primary" size="small">申请成功</el-button>
-          <el-button v-else @click="handleClick(scope.row)"   :disabled="false" type="primary" size="small">申请</el-button>
-        </template>
-      </el-table-column>
-    </el-table>
-    <el-pagination
-      style="margin-top: 20px"
-      background
-      @size-change="handleSizeChange"
-      @current-change="handleCurrentChange"
-      :current-page="pageNumber"
-      :page-sizes="[10, 15, 20, 30, 50]"
-      :page-size="pageSize"
-      layout="total, sizes, prev, pager, next, jumper"
-      :total="totalDataNumber">
-    </el-pagination>
+  <div id="app" >
+
+    <div class="row"  style="width: 100%;">
+      <el-radio-group v-model="taskType" >
+        <el-radio-button label="淘宝任务" border></el-radio-button>
+        <el-radio-button label="拼多多任务" disabled></el-radio-button>
+        <el-radio-button label="京东任务" disabled></el-radio-button>
+        <el-radio-button label="其他任务" disabled></el-radio-button>
+      </el-radio-group>
+    </div>
+
+    <!--<div class="row" >-->
+      <!--<el-tabs v-model="activeName2" type="card" @tab-click="handleClick">-->
+        <!--<el-tab-pane v-bind:label="taskType+'大厅'" name="1"></el-tab-pane>-->
+        <!--<el-tab-pane v-bind:label="'发布'+taskType" name="2"></el-tab-pane>-->
+        <!--<el-tab-pane v-bind:label="'已发布'+taskType" name="3"></el-tab-pane>-->
+        <!--<el-tab-pane v-bind:label="'已接手'+taskType" name="4"></el-tab-pane>-->
+      <!--</el-tabs>-->
+    <!--</div>-->
+    <router-view/>
+    <!--<el-table-->
+      <!--:data="tableData"-->
+      <!--stripe-->
+      <!--style="width: 100%">-->
+      <!--<el-table-column-->
+        <!--prop="title"-->
+        <!--label="任务名称"-->
+        <!--width="180">-->
+      <!--</el-table-column>-->
+      <!--<el-table-column-->
+        <!--prop="workerNum"-->
+        <!--label="任务人数"-->
+        <!--width="180">-->
+      <!--</el-table-column>-->
+      <!--<el-table-column-->
+        <!--prop="workerPrice"-->
+        <!--label="佣金价格">-->
+      <!--</el-table-column>-->
+      <!--<el-table-column-->
+        <!--label="操作"-->
+        <!--width="100">-->
+        <!--<template slot-scope="scope">-->
+          <!--<el-button v-if="scope.row.state == '1'" @click="handleClick(scope.row)"   :disabled="true" type="primary" size="small">申请成功</el-button>-->
+          <!--<el-button v-else @click="handleClick(scope.row)"   :disabled="false" type="primary" size="small">申请</el-button>-->
+        <!--</template>-->
+      <!--</el-table-column>-->
+    <!--</el-table>-->
+    <!--<el-pagination-->
+      <!--style="margin-top: 20px"-->
+      <!--background-->
+      <!--@size-change="handleSizeChange"-->
+      <!--@current-change="handleCurrentChange"-->
+      <!--:current-page="pageNumber"-->
+      <!--:page-sizes="[10, 15, 20, 30, 50]"-->
+      <!--:page-size="pageSize"-->
+      <!--layout="total, sizes, prev, pager, next, jumper"-->
+      <!--:total="totalDataNumber">-->
+    <!--</el-pagination>-->
   </div>
 </template>
 
@@ -49,7 +68,8 @@
         pageSize:10,
         pageNumber:1,
         totalDataNumber:0,
-        tableData: []
+        tableData: [],
+        taskType: '淘宝任务',
       }
     },
     methods:{
@@ -105,6 +125,18 @@
             console.log("请求出现异常")
           });
       }
+      ,
+      handleClick(tab, event) {
+        if(tab.name=="1"){
+          this.$router.push({ path: "/TaobaoTaskHall" });
+        }else  if(tab.name=="2"){
+          this.$router.push({ path: "/taskFinished" });
+        }else  if(tab.name=="3"){
+          this.$router.push({ path: "/create-task" });
+        }else  if(tab.name=="4"){
+          this.$router.push({ path: "/my-task" });
+        }
+      }
     },
     mounted() {
       this.getTaskData()
@@ -112,4 +144,7 @@
   }
 </script>
 <style>
+  .row{
+    margin-top: 20px;
+  }
 </style>

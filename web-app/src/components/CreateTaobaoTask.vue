@@ -1,5 +1,5 @@
 <template>
-  <div class="create_task">
+  <div class="create_task" style="margin-top: 20px">
     <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm">
       <el-form-item label="标题" prop="title">
         <el-input v-model="ruleForm.title"></el-input>
@@ -16,7 +16,10 @@
         <el-input v-model.number="ruleForm.workerPrice"></el-input>
       </el-form-item>
       <el-form-item label="总价" prop="totalPrice">
-        <span style="margin-left: 15px">{{ruleForm.workerNum*ruleForm.goodsPrice}}<span style="margin-left: 100px">目前积分：<span style="margin-left: 15px">0</span></span></span>
+        <span style="margin-left: 15px">{{ruleForm.workerNum*ruleForm.goodsPrice}}</span>
+      </el-form-item>
+      <el-form-item label="目前积分" prop="totalPrice">
+        <span style="margin-left: 15px">0</span><span style="margin-left: 20px"><router-link tag="a" :to="{path:'/charge-money'}">充值</router-link></span>
       </el-form-item>
       <el-form-item>
         <el-button type="primary" @click="submitForm('ruleForm')">立即创建</el-button>
@@ -50,8 +53,6 @@
           } else {
             callback(new Error('刷单数量大于0，小于等于100'));
           }
-
-
         }
       };
       var validateWorkerPrice = (rule, value, callback) => {
